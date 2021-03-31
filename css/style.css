@@ -1,0 +1,29 @@
+* {
+    text-align: center;
+}
+
+table {
+    border-collapse: collapse;
+    width: 300px;
+    margin: 0 auto;
+}
+
+td, th {
+    border: 2px solid #570606;
+    padding: 8px;
+    text-align: center;
+}
+
+h1 {
+    color: #570606;
+}
+
+select {
+    padding: 7px 40px 7px 12px;
+    outline:  none;
+    border-radius: 5px;
+    border: 1px solid #E8EAED;
+    box-shadow: 0 1px 3px -2px #9098A9;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
