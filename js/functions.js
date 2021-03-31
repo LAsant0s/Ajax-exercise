@@ -33,28 +33,45 @@ function loadPeopleInfo(peopleJson, sex) {
     default:
       filteredPeople = [];
   }
-  filteredPeople.forEach(printPeopleData);
+
+  printPeopleData(filteredPeople, sex);
 }
 
-function printPeopleData(person) {
-  const tbody = document.getElementById('tBody')
-  let dataLine = document.createElement("tr"); 
+function printPeopleData(array, sex) {
+  const thead = document.getElementById('tHead');
+   
+  if(sex === 'every') {
+    let sexHeader = document.createElement('th'); 
+    sexHeader.appendChild(document.createTextNode('Sexo'));
+    thead.appendChild(sexHeader); 
+  } else if(thead.childNodes.length > 4) {
+    thead.removeChild(thead.lastChild);
+  }
 
-  let nameLine = document.createElement("td");
-  let ageLine = document.createElement("td");
-  let sexLine = document.createElement("td");
+  array.forEach(person => {
+    
+    const tbody = document.getElementById('tBody')
+    let dataLine = document.createElement("tr"); 
+    
+    let nameLine = document.createElement("td");
+    let ageLine = document.createElement("td");
+    let sexLine = document.createElement("td");
+    
+    let name = document.createTextNode(person.name);
+    let age = document.createTextNode(person.age);
 
-  let name = document.createTextNode(person.name);
-  let age = document.createTextNode(person.age);
-  let sex = document.createTextNode(person.sex);
+    nameLine.appendChild(name);
+    ageLine.appendChild(age);
+    
+    dataLine.appendChild(nameLine);
+    dataLine.appendChild(ageLine);
 
-  nameLine.appendChild(name);
-  ageLine.appendChild(age);
-  sexLine.appendChild(sex);
-
-  dataLine.appendChild(nameLine);
-  dataLine.appendChild(ageLine);
-  dataLine.appendChild(sexLine);
-
-  tbody.appendChild(dataLine);
+    if(sex === 'every'){
+      let sex = document.createTextNode(person.sex);
+      sexLine.appendChild(sex);
+      dataLine.appendChild(sexLine);
+    }
+    
+    tbody.appendChild(dataLine);
+  });
 }
